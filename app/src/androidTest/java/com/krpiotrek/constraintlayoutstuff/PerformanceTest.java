@@ -10,15 +10,17 @@ import android.view.ViewGroup;
 
 public class PerformanceTest extends InstrumentationTestCase {
 
+    public static final String LOG_TAG = "bench";
+
     @SmallTest
     public void test() {
-        final long constraintLayoutTime = getLayoutTime(R.layout.item_new);
-        final long linearLayoutTime = getLayoutTime(R.layout.item_old_linear);
-        final long relativeLayoutTime = getLayoutTime(R.layout.item_old_relative);
-
-        Log.i("time", "constraint : " + constraintLayoutTime);
-        Log.i("time", "linear : " + linearLayoutTime);
-        Log.i("time", "relative : " + relativeLayoutTime);
+        for (int i = 0; i < 2; i++) {
+            Log.i(LOG_TAG, "Test " + i);
+            Log.i(LOG_TAG, "frame : " + getLayoutTime(R.layout.item_frame));
+            Log.i(LOG_TAG, "linear : " + getLayoutTime(R.layout.item_old_linear));
+            Log.i(LOG_TAG, "relative : " + getLayoutTime(R.layout.item_old_relative));
+            Log.i(LOG_TAG, "constraint : " + getLayoutTime(R.layout.item_new));
+        }
     }
 
     private long getLayoutTime(int layoutRes) {
